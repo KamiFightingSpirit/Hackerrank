@@ -1,0 +1,40 @@
+//https://www.hackerrank.com/challenges/palindrome-index/problem
+//need a different algorith to reduce complexity, one that does a n/2?
+
+
+
+/*
+Given a string of lowercase letters in the range ascii[a-z], determine a character that can be removed to make the string a palindrome. There may be more than one solution, but any will do. For example, if your string is "bcbc", you can either remove 'b' at index  or 'c' at index . If the word is already a palindrome or there is no solution, return -1. Otherwise, return the index of a character to remove.
+
+Initial Thoughts:
+1. check if already palindrome. if so -1
+2. else remove index zero
+3. reverse the new array
+4. check if palindrome
+5. if not, go back to s and remove index 1 etc.
+6.  ..... else return -1
+*/
+let tArr = "aac";
+
+
+function filterArr(s) {
+let arrOne = s.split("");
+let reverseArrOne = arrOne.slice().reverse();
+if(arrOne.filter((e, index) => arrOne[index] != reverseArrOne[index]).length === 0) { 
+return -1;
+} 
+for(let i = 0; i < arrOne.length; i++){
+  let newArr = arrOne.filter((k, index) => {  
+    if(index != i) {
+      return k;     
+      }
+    })  
+  let reverseNewArr = newArr.slice().reverse(); 
+  if(newArr.filter((e, index) => newArr[index] != reverseNewArr[index]).length === 0) {
+    return i;
+    } 
+  }
+  return -1;
+}
+console.log(filterArr(tArr));
+
